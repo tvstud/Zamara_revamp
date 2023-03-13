@@ -1,20 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import LoginPage from './screens/loginPage';
+import signedoutScreen from './screens/signedoutScreen';
+import Dashboard from './components/dashboard';
+import Menu from './components/menu';
+import Continents from './components/Continents';
+import Staff from './components/staff';
+import { TouchableOpacity } from 'react-native';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="SignedOutScreen" component={signedoutScreen} options={{
+          headerLeft: null, 
+        }}/>
+        <Stack.Screen name="Dashboard" component={Dashboard} options={{
+          headerLeft: () => (
+            <TouchableOpacity>
+              <Menu />
+            </TouchableOpacity>
+          ),
+        }} />
+        <Stack.Screen name="Continents" component={Continents} options={{
+          headerLeft: () => (
+            <TouchableOpacity>
+            <Menu />
+          </TouchableOpacity>
+          ),
+        }}/>
+        <Stack.Screen name="Staff" component={Staff} options={{
+          headerLeft: () => (
+            <TouchableOpacity>
+            <Menu />
+          </TouchableOpacity>
+            
+          ),
+        }}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
