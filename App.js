@@ -6,7 +6,8 @@ import signedoutScreen from './screens/signedoutScreen';
 import Dashboard from './components/dashboard';
 import Menu from './components/menu';
 import Continents from './components/Continents';
-import Staff from './components/staff';
+// import Staff from './components/staff';
+import Staff from './components/staff2';
 import { TouchableOpacity } from 'react-native';
 
 const Stack = createStackNavigator();

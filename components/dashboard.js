@@ -4,8 +4,8 @@ import { loadSession } from './sessionManager';
 
 const Dashboard = ({ route }) => {
   const [userDetails, setUserDetails] = useState([]);
-  // const { userId } = loadSession();
-  const { userId }=route.params;
+  const { userId } = loadSession();
+  // const { userId }=route.params;
 console.log(userId);
   useEffect(() => {
     fetch(`https://dummyjson.com/users/${userId}`)

@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'Montserrat-Regular'
   },
   heading: {
     fontSize: 30,

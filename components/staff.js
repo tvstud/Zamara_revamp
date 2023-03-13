@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, TextInput, TouchableOpacity } from 'react-native';
-
+import sendEmail from './smtpbucket';
 const Staff = () => {
   const [staffList, setStaffList] = useState([]);
   const [staffNumber, setStaffNumber] = useState('');
@@ -8,6 +8,7 @@ const Staff = () => {
   const [staffEmail, setStaffEmail] = useState('');
   const [staffDepartment, setStaffDepartment] = useState('');
   const [staffSalary, setStaffSalary] = useState('');
+  const [editingStaff, setEditingStaff] = useState(null);
 
   useEffect(() => {
     fetch('https://crudcrud.com/api/2ba76d9e07ba4362971b0980796d931f/zamara')
@@ -54,6 +55,50 @@ const Staff = () => {
       })
       .catch((error) => console.error(error));
   };
+  const handleUpdateStaff = () => {
+    const updatedStaff = {
+      staffNumber,
+      staffName,
+      staffEmail,
+      staffDepartment,
+      staffSalary
+    };
+  
+    fetch(`https://crudcrud.com/api/2ba76d9e07ba4362971b0980796d931f/zamara/${editingStaff._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedStaff)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const updatedStaffList = staffList.map((staff) => {
+          if (staff._id === editingStaff._id) {
+            return data;
+          }
+          return staff;
+        });
+        setStaffList(updatedStaffList);
+        setEditingStaff(null);
+        setStaffNumber('');
+        setStaffName('');
+        setStaffEmail('');
+        setStaffDepartment('');
+        setStaffSalary('');
+      })
+      .catch((error) => console.error(error));
+  };
+  
+  const handleEditStaff = (staff) => {
+    setEditingStaff(staff);
+    setStaffNumber(staff.staffNumber);
+    setStaffName(staff.staffName);
+    setStaffEmail(staff.staffEmail);
+    setStaffDepartment(staff.staffDepartment);
+    setStaffSalary(staff.staffSalary);
+  };
+  
 
   const renderItem = ({ item }) => (
     
@@ -77,6 +122,9 @@ const Staff = () => {
   </View>
       <TouchableOpacity style={styles.listItemRight} onPress={() => handleDeleteStaff(item._id)}>
         <Text style={styles.listItemDelete}>Delete</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.listItemRight} onPress={() => handleEditStaff(item._id)}>
+        <Text style={styles.listItemDelete}>Update</Text>
       </TouchableOpacity>
     </View>
   );
@@ -123,6 +171,7 @@ const Staff = () => {
         <TouchableOpacity style={styles.button} onPress={handleCreateStaff}>
           <Text style={styles.buttonText}>Add Staff</Text>
         </TouchableOpacity>
+  
       </View>
       <FlatList
         data={staffList}
