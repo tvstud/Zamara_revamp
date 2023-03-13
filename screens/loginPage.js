@@ -43,17 +43,20 @@ const LoginPage = () => {
   return (
     <View style={styles.container}>
         <Image style={styles.image} source={require('../assets/logo.png')}></Image>
-      <Text style={styles.heading}>Login</Text>
+      <Text style={styles.heading}>Please log in</Text>
       <TextInput
         style={styles.input}
         placeholder="Username"
+        placeholderTextColor="white"
+        placeholderStyle={{ color: 'white' }}
         value={username}
         onChangeText={setUsername}
       />
       <TextInput
-        style={[styles.input, { color: 'white' }]}
-
+        style={styles.input}
         placeholder="Password"
+        placeholderTextColor="white"
+        placeholderStyle={{ color: 'white' }}
         secureTextEntry={true}
         value={password}
         onChangeText={setPassword}
@@ -84,6 +87,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   input: {
+    color: 'white',
     height: 50,
     width: '80%',
     marginVertical: 10,

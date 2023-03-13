@@ -6,8 +6,8 @@ import signedoutScreen from './screens/signedoutScreen';
 import Dashboard from './components/dashboard';
 import Menu from './components/menu';
 import Continents from './components/Continents';
-// import Staff from './components/staff';
-import Staff from './components/staff2';
+import Staff from './components/staff';
+// import Staff from './components/staff2';
 import { TouchableOpacity } from 'react-native';
 
 const Stack = createStackNavigator();
@@ -24,7 +24,7 @@ function App() {
       fontWeight: 'bold', 
     },
   }}>
-        <Stack.Screen name="Login | Zamara -Powering Prosperity" component={LoginPage} />
+        <Stack.Screen name="   myZamara" component={LoginPage} />
         <Stack.Screen name="SignedOutScreen| Zamara -Powering Prosperity" component={signedoutScreen} options={{
           headerLeft: null, 
         }}/>

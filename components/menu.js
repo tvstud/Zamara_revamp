@@ -46,9 +46,7 @@ const Menu = () => {
 
   return (
     <View>
-      <FoldableMenu  title="| | |" titleStyle={{
-    color: '#fff',
-  }}>
+      <FoldableMenu  title="| | |" titleTextcolor='white'>
         <TouchableOpacity style={styles.button} onPress={handleHomePress}>
           <Text style={styles.text}>Home</Text>
         </TouchableOpacity>

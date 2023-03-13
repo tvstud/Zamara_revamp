@@ -43,59 +43,81 @@ const Continents = () => {
 
 const styles = StyleSheet.create({
   container: {
-  flex: 1,
-  padding: 20,
-  backgroundColor: '#fff'
+    flex: 1,
+    backgroundColor: '#1F1F3D',
+    paddingTop: 50,
+    paddingHorizontal: 20,
   },
-  title: {
-  fontSize: 24,
-  fontWeight: 'bold',
-  marginBottom: 20
-  },
-  form: {
-  marginBottom: 20
-  },
-  input: {
-  borderWidth: 1,
-  borderColor: '#ccc',
-  borderRadius: 5,
-  padding: 10,
-  marginBottom: 10
-  },
-  button: {
-  backgroundColor: '#007aff',
-  padding: 10,
-  borderRadius: 5
-  },
-  buttonText: {
+title: {
+fontSize: 24,
+fontWeight: 'bold',
+marginBottom: 20,
+color: '#fff'
+},
+form: {
+marginBottom: 20
+},
+input: {
   color: '#fff',
-  textAlign: 'center',
-  fontWeight: 'bold'
-  },
-  list: {
-  flex: 1
-  },
-  listItem: {
+borderWidth: 1,
+borderColor: '#ccc',
+borderRadius: 5,
+padding: 10,
+
+marginBottom: 10,
+},
+button: {
+  backgroundColor: '#43ae37',
+  borderRadius: 5,
+  paddingVertical: 10,
+  paddingHorizontal: 20,
+  marginTop: 20,
+},
+buttonText: {
+color: '#fff',
+textAlign: 'center',
+fontWeight: 'bold'
+},
+listItem: {
+  backgroundColor: '#fff',
+  padding: 10,
+  marginVertical: 5,
+  borderRadius: 5,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 1 },
+  shadowOpacity: 0.2,
+  shadowRadius: 1,
+  elevation: 1,
+},
+itemContainer: {
   flexDirection: 'row',
   justifyContent: 'space-between',
-  alignItems: 'center',
-  marginBottom: 10
-  },
-  listItemLeft: {
-  flexDirection: 'column'
-  },
-  listItemText: {
-  fontSize: 18,
-  marginBottom: 5
-  },
-  listItemRight: {
-  backgroundColor: '#f00',
-  padding: 10,
-  borderRadius: 5
-  },
-  listItemDelete: {
+},
+labelContainer: {
+  flex: 1,
+},
+valueContainer: {
+  flex: 2,
+},
+label: {
+  fontSize: 16,
+  fontWeight: 'bold',
+  color: '#333',
+  marginBottom: 5,
+},
+value: {
+  fontSize: 16,
+  color: '#333',
+  marginBottom: 5,
+},
+listItemText: {
+  fontSize: 14,
   color: '#fff',
-  fontWeight: 'bold'
-  }
-  });
+  marginBottom: 5,
+},
+listItemDelete: {
+color: 'red',
+fontWeight: 'bold'
+}
+});
 export default Continents;

@@ -54,36 +54,45 @@ console.log(userId);
 };
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
+    flex: 1,
     backgroundColor: '#1F1F3D',
-  } , 
+    alignItems: 'center',
+    paddingTop: 50,
+    paddingHorizontal: 20,
+  },
   itemContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
+    paddingVertical: 10,
     borderBottomWidth: 0.5,
     borderBottomColor: '#43ae37',
-    backgroundColor: '#1F1F3D',
-    height: 50,
+    width: '100%',
   },
   label: {
     fontSize: 16,
     fontWeight: 'bold',
     marginRight: 10,
     color: '#fff',
+    width: '50%',
+    textAlign: 'left',
   },
   value: {
     fontSize: 16,
     color: '#fff',
+    width: '50%',
+    textAlign: 'left',
   },
-
   heading: {
     fontSize: 30,
     marginBottom: 20,
-    marginLeft: 20,
     color: '#fff',
+    textAlign: 'center',
   },
-
-  });
+  emptyText: {
+    color: '#fff',
+    alignSelf: 'center',
+  },
+});
 export default Dashboard;
