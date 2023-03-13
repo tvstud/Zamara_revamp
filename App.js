@@ -15,9 +15,17 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginPage} />
-        <Stack.Screen name="SignedOutScreen" component={signedoutScreen} options={{
+      <Stack.Navigator  screenOptions={{
+    headerStyle: {
+      backgroundColor: '#1F1F3D',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold', 
+    },
+  }}>
+        <Stack.Screen name="Login | Zamara -Powering Prosperity" component={LoginPage} />
+        <Stack.Screen name="SignedOutScreen| Zamara -Powering Prosperity" component={signedoutScreen} options={{
           headerLeft: null, 
         }}/>
         <Stack.Screen name="Dashboard" component={Dashboard} options={{

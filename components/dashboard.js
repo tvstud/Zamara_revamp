@@ -4,8 +4,8 @@ import { loadSession } from './sessionManager';
 
 const Dashboard = ({ route }) => {
   const [userDetails, setUserDetails] = useState([]);
-  const { userId } = loadSession();
-  // const { userId }=route.params;
+  // const { userId } = loadSession();
+  const { userId }=route.params;
 console.log(userId);
   useEffect(() => {
     fetch(`https://dummyjson.com/users/${userId}`)
@@ -42,7 +42,7 @@ console.log(userId);
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Welcome {userDetails[0]?.value} {userDetails[1]?.value}</Text>
-      <Text >Your Profile details are as below:</Text>
+      <Text style={styles.label} >Your Profile details are as below:</Text>
       <FlatList
         data={userDetails}
         renderItem={renderItem}
@@ -54,28 +54,35 @@ console.log(userId);
 };
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor: '#1F1F3D',
+  } , 
   itemContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#43ae37',
+    backgroundColor: '#1F1F3D',
+    height: 50,
   },
   label: {
     fontSize: 16,
     fontWeight: 'bold',
     marginRight: 10,
+    color: '#fff',
   },
   value: {
     fontSize: 16,
+    color: '#fff',
   },
 
   heading: {
     fontSize: 30,
     marginBottom: 20,
     marginLeft: 20,
-    color: '#000',
+    color: '#fff',
   },
 
   });

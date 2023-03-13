@@ -104,15 +104,16 @@ const Staff = () => {
       <TextInput value={salary} onChangeText={setSalary} />
       <Button title="Create" onPress={createStaff} />
 
-      
-      {staffList.map((staff) => (
-        <View key={staff._id}>
-          <Text>{staff.staffNumber}</Text>
-          <Text>{staff.staffName}</Text>
-          <Text>{staff.staffEmail}</Text>
-          <Text>{staff.department}</Text>
-          <Text>{staff.salary}</Text>
-          <Button
+
+
+      {staffList.map((staff) => [
+    <View key={staff._id}>
+        <Text>{staff.staffNumber}</Text>
+        <Text>{staff.staffName}</Text>
+        <Text>{staff.staffEmail}</Text>
+        <Text>{staff.department}</Text>
+        <Text>{staff.salary}</Text>
+        <Button
             title="Edit"
             onPress={() => {
                 setStaffNumber(staff.staffNumber);
@@ -121,14 +122,12 @@ const Staff = () => {
                 setDepartment(staff.department);
                 setSalary(staff.salary);
                 updateStaff(staff._id);
-                }}
-                />
-                <Button
-                title="Delete"
-                onPress={() => deleteStaff(staff._id)}
-                />
-                </View>
-                ))}
+            }}
+        />
+        <Button title="Delete" onPress={() => deleteStaff(staff._id)} />
+    </View>,
+])
+}
                 </View>
                 );
                 };

@@ -29,7 +29,7 @@ const Menu = () => {
   const navigation = useNavigation();
 
   const handleHomePress = () => {
-    navigation.navigate('Dashboard');
+    navigation.navigate('Dashboard', { userId: 1 });
   };
 
   const handleStaffPress = () => {
@@ -46,7 +46,9 @@ const Menu = () => {
 
   return (
     <View>
-      <FoldableMenu title="| | |">
+      <FoldableMenu  title="| | |" titleStyle={{
+    color: '#fff',
+  }}>
         <TouchableOpacity style={styles.button} onPress={handleHomePress}>
           <Text style={styles.text}>Home</Text>
         </TouchableOpacity>

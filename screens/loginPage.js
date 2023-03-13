@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet,Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { saveSession } from '../components/sessionManager';
 
@@ -42,6 +42,7 @@ const LoginPage = () => {
 
   return (
     <View style={styles.container}>
+        <Image style={styles.image} source={require('../assets/logo.png')}></Image>
       <Text style={styles.heading}>Login</Text>
       <TextInput
         style={styles.input}
@@ -50,13 +51,15 @@ const LoginPage = () => {
         onChangeText={setUsername}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: 'white' }]}
+
         placeholder="Password"
         secureTextEntry={true}
         value={password}
         onChangeText={setPassword}
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
+    
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
     </View>
@@ -64,14 +67,21 @@ const LoginPage = () => {
 };
 
 const styles = StyleSheet.create({
+  image: {
+    width: 200,
+    height: 200,
+    resizeMode: 'contain',
+  },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#1F1F3D',
   },
   heading: {
     fontSize: 30,
     marginBottom: 20,
+    color: '#fff',
   },
   input: {
     height: 50,
@@ -81,9 +91,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
+  
   },
   button: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#43ae37',
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
