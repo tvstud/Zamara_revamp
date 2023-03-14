@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList, TextInput, TouchableOpacity,Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity,Button, ScrollView } from 'react-native';
 import sendEmail from './smtpbucket';
 const API_BASE_URL = 'https://crudcrud.com/api/c577eb32d32d4eeaa402c4451de1d81a/zamara'
 const Staff = () => {
   const [staffList, setStaffList] = useState([]);
   const [staffNumber, setStaffNumber] = useState('');
   const [staffName, setStaffName] = useState('');
-  const [staffEmail, setStaffEmail] = useState('');
+  const [staffEmail, setStaffEmail] = useState('tujatj@gmail.com');
   const [department, setDepartment] = useState('');
   const [salary, setSalary] = useState('');
   const [buttonText, setButtonText] = useState('Add Staff');
@@ -51,6 +51,9 @@ const Staff = () => {
         setStaffEmail('');
         setDepartment('');
         setSalary('');
+      const subject = "Profile Notification #Created";
+      const body = `Greetings ${data.staffName}, we are glad to inform you that your staff profile has been created.`;
+      sendEmail(data.staffEmail, subject, body);
     
       })
       .catch((error) => console.error(error));
@@ -63,6 +66,9 @@ const Staff = () => {
       });
       const filteredList = staffList.filter((staff) => staff._id !== id);
       setStaffList(filteredList);
+      const subject = "Profile Notification #Deleted";
+      const body = `Greetings ${staffName}, we are glad to inform you that your staff profile has been deleted.`;
+      sendEmail(staffEmail, subject, body);
     } catch (error) {
       console.error(error);
     }
@@ -88,6 +94,9 @@ const Staff = () => {
         staff._id === id ? data : staff
       );
       setStaffList(updatedList);
+      const subject = "Profile Notification #Edited";
+      const body = `Greeting ${staffName}, we are glad to inform you that your staff profile has been updated.`;
+      sendEmail(staffEmail, subject, body);
     } catch (error) {
       console.error(error);
     }

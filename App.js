@@ -24,8 +24,8 @@ function App() {
       fontWeight: 'bold', 
     },
   }}>
-        <Stack.Screen name="   myZamara" component={LoginPage} />
-        <Stack.Screen name="SignedOutScreen| Zamara -Powering Prosperity" component={signedoutScreen} options={{
+        <Stack.Screen name="myZamara" component={LoginPage} />
+        <Stack.Screen name="SignedOutScreen" component={signedoutScreen} options={{
           headerLeft: null, 
         }}/>
         <Stack.Screen name="Dashboard" component={Dashboard} options={{

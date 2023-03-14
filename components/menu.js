@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { loadSession } from './sessionManager';
+import { FontAwesome } from 'react-native-vector-icons';
 
 const FoldableMenu = ({ title, children }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -46,7 +47,7 @@ const Menu = () => {
 
   return (
     <View>
-      <FoldableMenu  title="| | |" titleTextcolor='white'>
+      <FoldableMenu title={<FontAwesome name="bars" size={36} color="white" />}>
         <TouchableOpacity style={styles.button} onPress={handleHomePress}>
           <Text style={styles.text}>Home</Text>
         </TouchableOpacity>
