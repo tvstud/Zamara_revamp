@@ -1,37 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text,StyleSheet } from 'react-native';
-import soap from 'react-native-soap-request';
-import Menu from './menu';
+import React, { useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
+//import soap from 'react-native-soap';
 
-
-const Continents = () => {
+function Continents() {
   const [continents, setContinents] = useState([]);
 
   useEffect(() => {
-    const url = 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL';
-    const method = 'ListOfContinentsByName';
-    const args = {};
-    
-    const getContinents = async () => {
-      try {
-        const client = await soap.createClient({wsdl: url});
-        const result = await client.ListOfContinentsByName(args);
-        const continentList = result.ListOfContinentsByNameResult.tContinent.map((continent) => ({
+    // create a SOAP client
+    const client = new soap.Client({
+      wsdl: 'http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL'
+    });
+
+    // call the ListOfContinentsByName operation
+    client.call('ListOfContinentsByName', {}, (err, res) => {
+      if (err) {
+        console.error(err);
+      } else {
+        // extract the continents from the response
+        const { tContinent } = res.ListOfContinentsByNameResult;
+
+        // create an array of continent objects with code and name properties
+        const continentList = tContinent.map(continent => ({
           code: continent.sCode,
-          name: continent.sName,
+          name: continent.sName
         }));
+
+        // update the state with the list of continents
         setContinents(continentList);
-      } catch (error) {
-        console.error(error);
       }
-    };
-    getContinents();
+    });
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>List of Continents</Text>
-      {continents.map((continent) => (
+    <View>
+      {continents.map(continent => (
         <View key={continent.code}>
           <Text>{continent.code}</Text>
           <Text>{continent.name}</Text>
@@ -39,7 +41,8 @@ const Continents = () => {
       ))}
     </View>
   );
-};
+}
+
 
 const styles = StyleSheet.create({
   container: {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, TextInput, TouchableOpacity,Button, ScrollView } from 'react-native';
 import sendEmail from './smtpbucket';
-const API_BASE_URL = 'https://crudcrud.com/api/c4ced4df1d764be0907bae4277832c63/zamara'
+const API_BASE_URL = 'https://crudcrud.com/api/c577eb32d32d4eeaa402c4451de1d81a/zamara'
 const Staff = () => {
   const [staffList, setStaffList] = useState([]);
   const [staffNumber, setStaffNumber] = useState('');
@@ -9,23 +9,13 @@ const Staff = () => {
   const [staffEmail, setStaffEmail] = useState('');
   const [department, setDepartment] = useState('');
   const [salary, setSalary] = useState('');
-
+  const [buttonText, setButtonText] = useState('Add Staff');
+  function MyButton() {
+      setButtonText('Update Staff');
+    };
   useEffect(() => {
     fetchStaffList();
   }, []);
-
-  const SMTPBucket = () => {
-    const [sender, setSender] = useState('');
-    const [recipient, setRecipient] = useState('');
-    const [subject, setSubject] = useState('');
-    const [body, setBody] = useState('');
-  
-    const sendEmail = async () => {
-      const url = `https://api.smtpbucket.com/emails?sender=${sender}&recipients=${recipient}&subject=${subject}&body=${body}`;
-      const response = await fetch(url, { method: 'POST' });
-      const result = await response.json();
-      console.log(result);
-    }};
 
   const fetchStaffList = async () => {
     try {
@@ -61,6 +51,7 @@ const Staff = () => {
         setStaffEmail('');
         setDepartment('');
         setSalary('');
+    
       })
       .catch((error) => console.error(error));
   };
@@ -89,6 +80,7 @@ const Staff = () => {
           staffEmail,
           department,
           salary,
+        
         }),
       });
       const data = await response.json();
@@ -100,7 +92,6 @@ const Staff = () => {
       console.error(error);
     }
   };
-  
 
   return (
     <View style={styles.container}>
@@ -147,7 +138,7 @@ const Staff = () => {
           value={salary}
         />
         <TouchableOpacity style={styles.button} onPress={createStaff}>
-          <Text style={styles.buttonText}>Add Staff</Text>
+          <Text style={styles.buttonText}>{buttonText}</Text>
         </TouchableOpacity>
   
       </View>
@@ -155,16 +146,11 @@ const Staff = () => {
         <Text style={styles.listTitle}>Existing Staff</Text>
       {staffList.map((staff) => [
     <View key={staff._id}>
-      <Text style={styles.listItem}>Staff Number</Text>
-        <Text style={styles.listItemText}>{staff.staffNumber}</Text>
-        <Text style={styles.listItem}>Staff Name</Text>
-        <Text style={styles.listItemText}>{staff.staffName}</Text>
-        <Text style={styles.listItem}>Staff Email</Text>
-        <Text style={styles.listItemText}>{staff.staffEmail}</Text>
-        <Text style={styles.listItem}>Department</Text>
-        <Text style={styles.listItemText}>{staff.department}</Text>
-        <Text style={styles.listItem}>Salary</Text>
-        <Text style={styles.listItemText}>{staff.salary}</Text>
+      <Text style={styles.listItem}>Staff Number: {staff.staffNumber}</Text>
+        <Text style={styles.listItem}>Staff Name : {staff.staffName}</Text>
+        <Text style={styles.listItem}>Staff Email : {staff.staffEmail}</Text>
+        <Text style={styles.listItem}>Department : {staff.department}</Text>
+        <Text style={styles.listItem}>Salary : {staff.salary}</Text>
         <Button
             title="Edit"
             style={styles.button}
@@ -175,6 +161,7 @@ const Staff = () => {
                 setDepartment(staff.department);
                 setSalary(staff.salary);
                 updateStaff(staff._id);
+                MyButton();
                 deleteStaff(staff._id);
             }}
         />
